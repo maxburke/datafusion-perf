@@ -1,0 +1,38 @@
+[package]
+name = "datafusion-perf"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+arrow = { version="42.0.0", features=["chrono-tz", "simd"] }
+arrow-row = { version="42.0.0" }
+arrow-array = { version="42.0.0", features=["simd"] }
+arrow-schema = { version="42.0.0", features=["serde"] }
+arrow-integration-test = { version="42.0.0" }
+datafusion = { version="27.0.0", features=["simd"] }
+datafusion-expr = "27.0.0"
+tokio = "1.32"
+
+[profile.profiling]
+inherits = "release"
+strip = false
+debug = true
+
+[patch.crates-io]
+arrow-row = { git = "https://github.com/urbanlogiq/arrow-rs", branch="42.0.0-ul" }
+arrow-array = { git = "https://github.com/urbanlogiq/arrow-rs", branch="42.0.0-ul" }
+arrow-data = { git = "https://github.com/urbanlogiq/arrow-rs", branch="42.0.0-ul" }
+arrow-ord = { git = "https://github.com/urbanlogiq/arrow-rs", branch="42.0.0-ul" }
+arrow-schema = { git = "https://github.com/urbanlogiq/arrow-rs", branch="42.0.0-ul" }
+arrow-select = { git = "https://github.com/urbanlogiq/arrow-rs", branch="42.0.0-ul" }
+arrow-cast = { git = "https://github.com/urbanlogiq/arrow-rs", branch="42.0.0-ul" }
+arrow-ipc = { git = "https://github.com/urbanlogiq/arrow-rs", branch="42.0.0-ul" }
+arrow-json = { git = "https://github.com/urbanlogiq/arrow-rs", branch="42.0.0-ul" }
+arrow-buffer = { git = "https://github.com/urbanlogiq/arrow-rs", branch="42.0.0-ul" }
+arrow = { git = "https://github.com/urbanlogiq/arrow-rs", branch="42.0.0-ul" }
+datafusion = { git = "https://github.com/urbanlogiq/arrow-datafusion", branch="27.0.0-ul-array-contains" }
+datafusion-expr = { git = "https://github.com/urbanlogiq/arrow-datafusion", branch="27.0.0-ul-array-contains" }
+datafusion-physical-expr = { git = "https://github.com/urbanlogiq/arrow-datafusion", branch="27.0.0-ul-array-contains" }
+datafusion-sql = { git = "https://github.com/urbanlogiq/arrow-datafusion", branch="27.0.0-ul-array-contains" }
